@@ -93,15 +93,15 @@ class ResourceMakeCommand extends Command
 
         $this->createModel($name);
 
-//        $this->createRepository($name);
-//
-//        $this->createController($name);
-//
-//        $this->createRepoInterface($name);
-//        
-//        $this->createModelInterface($name);
-//
-//        $this->createServices($name);
+        $this->createRepository($name);
+
+        $this->createController($name);
+
+        $this->createRepoInterface($name);
+        
+        $this->createModelInterface($name);
+
+        $this->createServices($name);
     }
 
     private function createServices($name)
