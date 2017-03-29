@@ -9,5 +9,7 @@ use App\Http\Domain\Models\ModelInterface;
  */
 interface NAME_PLACEHOLDERInterface extends ModelInterface
 {
+    CONSTANTS_DECLARATION
+    public function setFUNCTION_NAME($COLUMN_NAME);
+    public function getFUNCTION_NAME();
 
-}

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class NAME_PLACEHOLDER extends Model implements NAME_PLACEHOLDERInterface
 {
+    use SoftDeletes;
+   
     
     /**
      * Function to set $COLUMN_NAME column

@@ -241,7 +241,7 @@ class ResourceMakeCommand extends Command
 
         $model = $this->buildModelInterface($name);
 
-        $this->files->put(app_path('Http/Domain/Models/' . $name . '/' . $filename), $model);
+        //$this->files->put(app_path('Http/Domain/Models/' . $name . '/' . $filename), $model);
 
         $this->info($modelName . ' Models Interface created');
 
@@ -268,9 +268,40 @@ class ResourceMakeCommand extends Command
 
     protected function buildModelInterface($name)
     {
-        $stub = $this->files->get(__DIR__ . '/../Stubs/model_interface.stub');
+        
+        $modelName = $this->modelName($name);
 
-        $stub = str_replace('NAME_PLACEHOLDER', ucfirst($name), $stub);
+        $filename = $modelName . 'Interface.php';
+
+        $attr_array = explode(',', ($this->argument('attributes')));
+        $string = "";
+        foreach ($attr_array as $array) {
+            $string .= "const ".strtoupper($array)." = '".$array ."';\n    " ;
+        }
+       
+        foreach ($attr_array as $array) {
+            if ($this->files->exists(app_path('Http/Domain/Models/' . $name . '/' . $filename))) {
+                echo 'hhhh';
+                // Get stub file
+                $funStub = $this->files->get(__DIR__ . '/../Stubs/interface_function.stub');
+                $funStub = str_replace('NAME_PLACEHOLDER', ucfirst($name), $funStub);
+                $funStub = str_replace('FUNCTION_NAME', ucfirst($array), $funStub);
+                $funStub = str_replace('COLUMN_NAME',($array), $funStub);
+               
+                $this->files->append(app_path('Http/Domain/Models/' . $name . '/' . $filename), "\n" . $funStub);
+            } else {
+                echo 'second';
+                $stub = $this->files->get(__DIR__ . '/../Stubs/model_interface.stub');
+                
+                $stub = str_replace('NAME_PLACEHOLDER', ucfirst($name), $stub);
+                $stub = str_replace('FUNCTION_NAME', ucfirst($array), $stub);
+                $stub = str_replace('COLUMN_NAME',($array), $stub);
+                // Create controller file
+                $stub = str_replace('CONSTANTS_DECLARATION', $string, $stub);
+                $this->files->put(app_path('Http/Domain/Models/' . $name . '/' . $filename), $stub);
+            }
+        }
+        $this->files->append(app_path('Http/Domain/Models/' . $name . '/' . $filename), "\n" . '}');
 
         return $stub;
     }
@@ -282,6 +313,7 @@ class ResourceMakeCommand extends Command
         $filename = $modelName . '.php';
 
         $attr_array = explode(',', ($this->argument('attributes')));
+        
         foreach ($attr_array as $array) {
             if ($this->files->exists(app_path('Http/Domain/Models/' . $name . '/' . $filename))) {
        
@@ -289,7 +321,7 @@ class ResourceMakeCommand extends Command
                 $funStub = $this->files->get(__DIR__ . '/../Stubs/function.stub');
                 $funStub = str_replace('FUNCTION_NAME', ucfirst($array), $funStub);
                 $funStub = str_replace('COLUMN_NAME', ($array), $funStub);
-                $funStub = str_replace('CAPS_COL_NAME', ucwords($array), $funStub);
+                $funStub = str_replace('CAPS_COL_NAME', strtoupper($array), $funStub);
 
                 $this->files->append(app_path('Http/Domain/Models/' . $name . '/' . $filename), "\n" . $funStub);
             } else {
@@ -297,9 +329,10 @@ class ResourceMakeCommand extends Command
                 $stub = $this->files->get(__DIR__ . '/../Stubs/model.stub');
                 $stub = str_replace('FUNCTION_NAME', ucfirst($array), $stub);
                 $stub = str_replace('COLUMN_NAME', ($array), $stub);
-                $stub = str_replace('CAPS_COL_NAME', ucwords($array), $stub);
+                $stub = str_replace('CAPS_COL_NAME', strtoupper($array), $stub);
                 $stub = $this->replaceClassName(ucfirst($name), $stub);
                 // Create controller file
+                
                 $this->files->put(app_path('Http/Domain/Models/' . $name . '/' . $filename), $stub);
             }
         }

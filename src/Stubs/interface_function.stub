@@ -1,0 +1,3 @@
+   public function setFUNCTION_NAME($COLUMN_NAME);
+   public function getFUNCTION_NAME();
+    
