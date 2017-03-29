@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Http\Domain\Repositories\NAME_PLACEHOLDER;
+
+interface NAME_PLACEHOLDERRepositoryInterface{
+
+    
+   
+    
+}

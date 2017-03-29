@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Http\Domain\Repositories\REPOSITORY_NAME;
+
+use Helper;
+use Carbon\Carbon;
+use App\Http\Domain\Models\REPOSITORY_NAME\REPOSITORY_NAMEInterface;
+use App\Http\Domain\Repositories\Repository;
+
+/**
+ * Startup Repository for REPOSITORY_NAME DB operations
+ * @author: 
+ */
+class REPOSITORY_NAMERepository extends Repository implements REPOSITORY_NAMERepositoryInterface
+{
+
+    /**Contstructor sets dependencies
+    * @param $model
+    * @author : 
+    * @return void
+    */
+    public function __construct(REPOSITORY_NAMEInterface $model)
+    {
+        $this->model = $model;
+    }
+    
+    
+
+}

@@ -1,0 +1,33 @@
+{
+    "name": "laravelresource/resourcemaker",
+    "description": "Generate a model, repository, controller and services",
+    "authors": [
+        {
+            "name": "Twinkle Sharma",
+            "email": "twinkle.sharma@daffodilsw.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "5.2.*",
+        "illuminate/console": "5.2.*",
+        "illuminate/filesystem": "5.2.*"
+    },
+    "require-dev": {
+        "mockery/mockery": "0.9.*",
+        "orchestra/testbench": "~3.0",
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelResource\\ResourceMaker\\": "src/"
+        }
+    },
+"autoload-dev": {
+      "psr-4": {
+        "LaravelResource\\ResourceMaker\\": ["src/", "tests/"],
+        "App\\": "tests/generated/app/"
+      }
+}
+}

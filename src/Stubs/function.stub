@@ -1,0 +1,20 @@
+    /**
+     * Function to set $COLUMN_NAME column
+     * 
+     * @param string $COLUMN_NAME 
+     * @author 
+     */
+    public function setFUNCTION_NAME($COLUMN_NAME)
+    {
+        $this->{self::CAPS_COL_NAME} = $COLUMN_NAME;
+    }
+    
+    /**
+     * Function to get COLUMN_NAME column
+     * @author 
+     */
+    public function getFUNCTION_NAME()
+    {
+        return $this->{self::CAPS_COL_NAME};
+    }
+    

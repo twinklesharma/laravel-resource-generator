@@ -1,0 +1,13 @@
+<?php
+
+namespace App\Http\Domain\Models\NAME_PLACEHOLDER;
+
+use App\Http\Domain\Models\ModelInterface;
+
+/**
+ * Declaring all functions must be defined by implemented class.
+ */
+interface NAME_PLACEHOLDERInterface extends ModelInterface
+{
+
+}

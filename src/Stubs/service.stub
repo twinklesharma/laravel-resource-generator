@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Services;
+
+use App\Http\Requests\Request;
+use App\Http\Domain\Repositories\NAME_PLACEHOLDER\NAME_PLACEHOLDERRepositoryInterface;
+use Helper;
+use Sentinel;
+
+/**
+ * Service class contains all the functions could
+ * be applied on NAME_PLACEHOLDER
+ * @author : Sandeep Kumar
+ */
+class NAME_PLACEHOLDERService extends Service
+{
+
+
+    /**Fetch all the enterprise items for datatable
+    * @author : 
+    * @return Eloquent Collection
+    */
+    public function getListForDatatables($filters)
+    {
+        $result = $this->repository->getAllForDatatable($filters);
+        return $result;
+    }
+    
+    
+       
+
+}
