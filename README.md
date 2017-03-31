@@ -6,13 +6,13 @@ Add laravelresource/resourcemaker as a requirement to composer.json :
 ```php
 {
     "require": {
-        "laravelresource/resourcemaker": "0.*"
+        "laravelresource/resourcemaker": "dev-master"
     }
 }
 ```
 Update your packages with composer update or install with composer install.
 
-You can also add the package using `composer require laravelresource/resourcemaker` and later specifying the version you want (for now, dev-master is your best bet).
+You can also add the package using `composer require laravelresource/resourcemaker "dev-master"` and later specifying the version you want (for now, dev-master is your best bet).
 
 #### Service Provider
 `LaravelResource\ResourceMaker\ResourceGeneratorServiceProvider::class,`
