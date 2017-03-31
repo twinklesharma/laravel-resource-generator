@@ -1,6 +1,5 @@
 {
     "name": "laravelresource/resourcemaker",
-    "version": "0.0.1",
     "description": "Generate a model, repository, controller and services",
     "authors": [
         {

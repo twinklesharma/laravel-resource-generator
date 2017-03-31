@@ -91,15 +91,15 @@ class ResourceMakeCommand extends Command
         $this->files->makeDirectory($path, $mode = 0777, true, true);
 
 
-        $this->createModel($name);
-
-        $this->createRepository($name);
-
-        $this->createController($name);
-
-        $this->createRepoInterface($name);
-        
-        $this->createModelInterface($name);
+//        $this->createModel($name);
+//
+//        $this->createRepository($name);
+//
+//        $this->createController($name);
+//
+//        $this->createRepoInterface($name);
+//        
+//        $this->createModelInterface($name);
 
         $this->createServices($name);
     }
@@ -114,7 +114,17 @@ class ResourceMakeCommand extends Command
 
         $filename = $model . 'Service.php';
 
+        $attr_array = explode(',', ($this->argument('attributes')));
+        $string = $field_arr= "";
+        
+        foreach ($attr_array as $array) {
+            $string .= '$obj->set'.ucfirst($array).'($arr["'.$array .'"]);'."\n        " ;
+            $field_arr .= "'".$array."',\n            ";
+        }
 
+        $stub = str_replace('CALL_FUNCTION', $string, $stub);
+        
+        $stub = str_replace('FIELDARRAY', $field_arr, $stub);
 
         // $stub = str_replace('REPOSITORY_NAME', ucfirst($name), $stub);
 

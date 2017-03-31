@@ -16,6 +16,33 @@ class NAME_PLACEHOLDERService extends Service
 {
 
 
+    /** Contstructor sets dependencies
+     * @param $model
+     * @author : 
+     * @return void
+     */
+
+    public function __construct(NAME_PLACEHOLDERRepositoryInterface $repository)
+    {
+        $this->repository = $repository;  
+        $this->fields_arr = [
+            FIELDARRAY'updated_by',
+            'created_by'   
+        ];
+      
+    }
+    
+    /**
+     * Set fields of the Model
+     * @param array $arr
+     * @param Model $obj
+     * @return Model
+     */
+    public function setFields($arr, $obj){
+        CALL_FUNCTION
+        return $obj;
+    }
+
     /**Fetch all the enterprise items for datatable
     * @author : 
     * @return Eloquent Collection
@@ -27,6 +54,25 @@ class NAME_PLACEHOLDERService extends Service
     }
     
     
-       
+    /**
+     * Get all the Subscription Plans.
+     * @type string defines which type of plans are required
+     * @author : Sandeep Kumar
+     * @return eloquent collection
+     */
+    public function getAll($type = 0){
+        $arr = [];
+        if($type > 0){
+            $result = $this->repository->findAllBy('type', $type, ['id', 'name']);
+        } else if($type == 0)  {
+            $result = $this->repository->all(['id', 'name']);
+        } else{
+            return $type." is not a valid option!";
+        }
+        foreach($result as $item){
+            $arr[$item->id] = $item->name;
+        }
+        return $arr;
+    }
 
 }
