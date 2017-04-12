@@ -91,15 +91,15 @@ class ResourceMakeCommand extends Command
         $this->files->makeDirectory($path, $mode = 0777, true, true);
 
 
-//        $this->createModel($name);
-//
-//        $this->createRepository($name);
-//
-//        $this->createController($name);
-//
-//        $this->createRepoInterface($name);
-//        
-//        $this->createModelInterface($name);
+       $this->createModel($name);
+
+       $this->createRepository($name);
+
+       $this->createController($name);
+
+       $this->createRepoInterface($name);
+       
+       $this->createModelInterface($name);
 
         $this->createServices($name);
     }
